@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="stylle.css">
+</head>
+<body>
+    <div class="wrap">
+        <ul class="uls">
+            <li><img src="img/11.jpg" alt=""></li>
+            <li><img src="img/22.jpg" alt=""></li>
+            <li><img src="img/33.jpg" alt=""></li>
+            <li><img src="img/44.jpg" alt=""></li>
+        </ul>
+        <ol>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ol>
+        <span class="left"><</span>
+        <span class="right">></span>
+    </div>
+    <script src="jquery-2.1.1.min.js"></script>
+    <script>
+        var timer = null;
+        var cont = 0;
+        var conts = 0;
+        var len = $('.uls img').length;
+        var w = $('.uls img').width();
+        $(".wrap").hover(function(){
+				clearInterval(timer)
+			},function(){
+				timer=setInterval(function(){
+					conts++;
+					if(cont>=len-2){
+						cont=0;
+						$("ul").css("margin-left",0)
+					}
+					if(conts>len-1){
+						conts=0;
+					}
+					cont++;
+					$("ul").stop().animate({"margin-left":-w*cont},1000)
+					$("ol li").eq(conts).addClass('bg').siblings().removeClass('bg')
+				},1500)
+			}).trigger("mouseleave")
+    </script>
+</body>
+</html>
